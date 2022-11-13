@@ -6,11 +6,11 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     restart: always
-    enviroment:
+    environment:
       MYSQL_ROOT_PASSWORD: wordpress
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
-      MYSQL_PASSWORD: secret4286
+      MYSQL_PASSWORD: secret
 
   wordpress:
     depends_on:
@@ -19,10 +19,15 @@ services:
     ports:
       - "8000:80"
     restart: always
-    enviroment:
+    environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: secret4286
+      WORDPRESS_DB_PASSWORD: secret
       WORDPRESS_DB_NAME: wordpress
 volumes:
   db_data: {}
+
+#
+#
+#
+# para subir dar o comando $docker-compose up -d, e para matar o processo $docker-compose down 
