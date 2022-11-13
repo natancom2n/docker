@@ -1,0 +1,49 @@
+#
+#
+#
+#puxar uma imagem
+%docker pull ----  exemplo: $docker pull nginx
+
+#mostrar as imagens que já foram baixadas
+$docker images
+
+#roda um container
+$docker run -it -p 8080:80 nginx /bin/bash
+
+#rodar um container modificando a pasta + -rm 
+$docker run --rm -ti --name nta-nginx -p 8080:80 -v $(pwd)/landingpage:/usr/share/nginx/html nginx
+
+#emula uma interface terminal alternativa
+-it
+
+#config portas 8080:80 ( primeiro é da maquina local, e o segundo a parta do servidor)
+-p 8080:80
+
+
+#indica que na hora que sair do container ele deve ser removido
+-rm
+
+
+
+1) Criar docker file
+	- FROM ( qual imagem será carregado: Ubuntu, Alpine, windows, mac, fedora)
+	- WORKDIR (qual diretório que deve ser trabalhado: /app)
+	- COPY/ADD (copiar ou adicionar todos os arquivos que fazem parte da aplicação dentro de minha imagem
+	- RUN (rodar a aplicação)
+	
+
+	- ENV ( o que é necessário para rodar o Linux dentro deste ambiente)
+	- EXPOSE (resposável por modifcar a portal que será disponibilizada a aplicação)
+	- USER ( usuario que ira executar essa aplicação)
+	- CMD / ENTRYPOINT ( executar algum comando depois que a aplicação já está rodando)
+	 	
+2) ir até diretório que tem o Dockerfile criado e execultar no terminal:
+
+	(comando para construir a imagem)
+	$docker build -t app .
+	
+	(verificar imagen criadas)
+	$docker images
+
+	(rodar docker interativo (que não foi baixado), no exemplo abaixo a imagem com o nome app será aberta no shell)
+	$docker run -it app sh

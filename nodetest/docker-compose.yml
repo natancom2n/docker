@@ -1,0 +1,15 @@
+version: '3'
+
+# espelhar uma pasta para dentro do container
+
+services:
+  app:
+
+    # build é qual localização da imagem para ele sempre configs:
+    # que precisar rodar docker build acessar
+    build: .
+    command: npm start
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/app
